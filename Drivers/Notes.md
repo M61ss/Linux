@@ -201,7 +201,7 @@ Files inside this folder are used to give the possibility to the user to use loa
 
 > [!IMPORTANT] 
 >
-> It doesn't hold hard disk's memory because it is a virtual filesystem composed by virtual files, which are empty (Try to `cat` a file inside the `/proc/` folder).
+> It doesn't hold hard disk's memory because it is a virtual filesystem composed by virtual files, which are empty (Try to `cat` a file part of the `/proc/` folder).
 
 All primitives are defined inside the `linux/include/linux/proc.fs.h` and it is possible to provide custom implementations because those are all function pointers.
 
@@ -219,7 +219,7 @@ If we have an application that take photos, then, when we click on the pic butto
 
 > [!NOTE]
 >
-> The kernel doesn't keep any user data because it has to be safe and mostly unaffected by users.
+> The kernel doesn't keep any user data because it has to be safe and mostly unaffected by users. In fact, it is impossible for the user to modify the behaviour of a `/proc/` file entry because it is an empty file, so the user cannot write on that.
 
 We need to associate `proc_ops` to our driver. `proc_ops` is a struct inside `linux/include/linux/proc.fs.h`.
 
