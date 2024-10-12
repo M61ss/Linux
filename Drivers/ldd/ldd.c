@@ -12,9 +12,15 @@ static ssize_t mattia_read(struct file *pointer,
                     char __user *user_space_buffer, 
                     size_t count,
                     loff_t *offset) {
+    char msg[] = "User space info\n";
+    size_t msg_len = strlen(msg);
+    int return_value;
+
+    return_value = copy_to_user(user_space_buffer, msg, msg_len);
+
     printk("Read!\n");
 
-    return 0;
+    return msg_len;
 }
 
 struct proc_ops driver_proc_ops = {

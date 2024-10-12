@@ -298,3 +298,25 @@ After compiling and running, we can see that, if we try to `cat` the corrisponde
 The `printk` writes on the kernel buffer, but it is possible to pass informations to the user, if we want.
 
 ## Passing data to the user
+
+It is possible to pass data to the user, for example, in a read operation using its second parameter:
+
+```c
+ssize_t (*proc_read)(struct file *, char __user *, size_t, loff_t *);
+```
+
+`char __user *` is a buffer that contains information to be passed to the user space.
+
+Then, we need an API to write data into that user space buffer:
+
+```c
+copy_to_user(dst, src, n_bytes);
+```
+
+When programs like `cat` try to read from a file entry, they use the return value of the driver's read function. So, a possible solution could be set the return value equals to the lenght of information to be read. Unfortunately, it cause a infinite reading loop because `cat` cannot reach the `EOF`. The only way to limit it is to use the last parameter of the read function:
+
+```c
+ssize_t (*proc_read)(struct file *, char __user *, size_t, loff_t *);
+```
+
+`loff_t *` is an offset.
