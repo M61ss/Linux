@@ -14,6 +14,7 @@
   - [Troubleshooting](#troubleshooting)
 - [Implementing a read operation](#implementing-a-read-operation)
 - [Passing data to the user](#passing-data-to-the-user)
+- [Complete working module](#complete-working-module)
 - [Conclusion](#conclusion)
 
 ## Linux SSH subsystem
@@ -354,6 +355,10 @@ static ssize_t mattia_read(struct file *pointer,
    return msg_len;
 }
 ```
+
+## Complete working module
+
+Here a [complete working module](./ldd/ldd.c) example.
 
 ## Conclusion
 
