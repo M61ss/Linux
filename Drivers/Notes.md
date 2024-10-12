@@ -14,6 +14,7 @@
   - [Troubleshooting](#troubleshooting)
 - [Implementing a read operation](#implementing-a-read-operation)
 - [Passing data to the user](#passing-data-to-the-user)
+- [Conclusion](#conclusion)
 
 ## Linux SSH subsystem
 
@@ -353,3 +354,7 @@ static ssize_t mattia_read(struct file *pointer,
    return msg_len;
 }
 ```
+
+## Conclusion
+
+Now, we are able to write a device driver for a virtual device. So, for example, we can create a virtual system that manages information and works like a memory where to read or write information from any program on the system.
