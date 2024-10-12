@@ -346,7 +346,7 @@ static ssize_t mattia_read(struct file *pointer,
    return_value = copy_to_user(user_space_buffer, msg, msg_len);
 
    // Here we update offset of the read message lenght 
-   offset += msg_len;
+   *offset += msg_len;
 
    printk("Read!\n");
    // We return the lenght of the message that the reader program can read from the user_space_buffer
