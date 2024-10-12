@@ -313,10 +313,43 @@ Then, we need an API to write data into that user space buffer:
 copy_to_user(dst, src, n_bytes);
 ```
 
-When programs like `cat` try to read from a file entry, they use the return value of the driver's read function. So, a possible solution could be set the return value equals to the lenght of information to be read. Unfortunately, it cause a infinite reading loop because `cat` cannot reach the `EOF`. The only way to limit it is to use the last parameter of the read function:
+When programs like `cat` try to read from a file entry, they use the return value of the driver's read function. So, a possible solution could be set the return value equals to the lenght of information to be read. Unfortunately, it cause a infinite read loop because `cat` cannot reach the `EOF`. The only way to limit it is to use the last parameter of the read function:
 
 ```c
 ssize_t (*proc_read)(struct file *, char __user *, size_t, loff_t *);
 ```
 
-`loff_t *` is an offset.
+`loff_t *` is an offset that specifies where to start to read data from the `user_space_buffer`. It is `0` by default. 
+\
+If we update the offset of the lenght of read data, then we can stop the infinite read loop with a simple `if`, which makes the function to return `0` instead of `msg_len`. So, `cat` stops read because it recieves `0`.
+
+*Example*:
+
+```c
+static ssize_t mattia_read(struct file *pointer,
+                           char __user *user_space_buffer, 
+                           size_t count,
+                           loff_t *offset) {
+   char msg[] = "User space info\n";
+   size_t msg_len = strlen(msg);
+
+   // Here a variable to catch copy_to_user return value to avoid warning
+   int return_value;
+
+   // Check if the offset is equals or greater than the message that we want to read
+   if (*offset >= msg_len) {
+      // If true, then we return 0, so that the reader is informed that there is nothing to read
+      return 0;
+   }
+
+   // Here we copy data to the user_space_buffer
+   return_value = copy_to_user(user_space_buffer, msg, msg_len);
+
+   // Here we update offset of the read message lenght 
+   offset += msg_len;
+
+   printk("Read!\n");
+   // We return the lenght of the message that the reader program can read from the user_space_buffer
+   return msg_len;
+}
+```

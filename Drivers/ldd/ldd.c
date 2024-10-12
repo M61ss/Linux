@@ -16,10 +16,15 @@ static ssize_t mattia_read(struct file *pointer,
     size_t msg_len = strlen(msg);
     int return_value;
 
+    if (*offset >= msg_len) {
+        return 0;
+    }
+
     return_value = copy_to_user(user_space_buffer, msg, msg_len);
 
-    printk("Read!\n");
+    *offset += msg_len;
 
+    printk("Read!\n");
     return msg_len;
 }
 
