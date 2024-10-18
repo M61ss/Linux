@@ -20,6 +20,14 @@ If you want to start tuneD everytime the system boots:
 sudo systemctl enable tuned
 ```
 
+> [!WARNING] 
+>
+> If at boot time tuneD doesn't start, consider to disable default Ubuntu power profiles:
+>
+> ```bash
+> sudo systemctl mask power-profiles-daemon
+> ```
+
 Select a profile:
 
 ```bash
