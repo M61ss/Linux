@@ -535,7 +535,7 @@ $ vim script.sh
  #!/bin/bash
 
  source lib.sh
- # oppure
+ # or
  # . lib.sh
 
 for f in "$@"; do
