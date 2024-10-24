@@ -25,8 +25,7 @@
   - [`seq`](#seq)
   - [`while`](#while)
   - [Expand filenames](#expand-filenames)
-- [Argomenti avanzati](#argomenti-avanzati)
-  - [Funzioni](#funzioni)
+- [Functions](#functions)
   - [Script multi-file](#script-multi-file)
   - [Arrays](#arrays)
   - [getopts](#getopts)
@@ -457,7 +456,9 @@ done
 
 ### Expand filenames
 
-I moderni filesystems supportano nomi di file contenenti spazi. Di conseguenza, per evitare problemi, l'espansione di variabili fuori dal controllo dello sviluppatore (ad es. nomi di file) va effettuata fra doppie virgolette " ".
+To avoid problems, you must use `""` for filenames because often it contains spaces and it could lead to an error.
+
+Given a script like this:
 
 ```shell
  $ vim script.sh
@@ -472,17 +473,15 @@ I moderni filesystems supportano nomi di file contenenti spazi. Di conseguenza, 
  done
 ```
 
-Se non usassimo le doppie virgolette, il seguente caso produrrebbe l'errore mostrato.
+It lead to an error in cases like this:
 
 ```shell
-$ touch "$HOME"/"Mario Rossi"
+$ touch "$HOME"/"Some file"
 $ ./script.sh
-./script.sh: line 4: [: /home/nicola/Mario: binary operator expected
+./script.sh: line 4: [: /home/user/Some: binary operator expected
 ```
 
-## Argomenti avanzati
-
-### Funzioni
+## Functions
 
 Bash supporta la definizione di funzioni:
 
