@@ -26,7 +26,7 @@
   - [`while`](#while)
   - [Expand filenames](#expand-filenames)
 - [Functions](#functions)
-  - [Script multi-file](#script-multi-file)
+  - [Multi-file script](#multi-file-script)
   - [Arrays](#arrays)
   - [getopts](#getopts)
   - [Buone pratiche](#buone-pratiche)
@@ -483,22 +483,17 @@ $ ./script.sh
 
 ## Functions
 
-Bash supporta la definizione di funzioni:
-
-- Accedono a parametri di invocazione con sintassi \$1 . . . \$n (come gli script)
-- Ritornano al chiamante con istruzione return (script usano exit)
-- Valori di ritorno possono essere letti dal chiamante con sintassi $? (come gli script)
-- Definite con sintassi:
-
-```
-nomefunzione() {
-  .
-  .
-  .
+```shell
+functionname() {
+  # ...
 }
 ```
 
-L'esempio seguente definisce una funzione che ritorna 0 in caso il primo parametro sia una directory eseguibile, 1 viceversa.
+- They access parameters like scripts using \$1, ..., \$n notation.
+- They can return a value using `return` followed by the returned value.
+- Their return value can be read using $?, like scripts.
+
+*Example*:
 
 ```shell
 #!/bin/bash
@@ -520,7 +515,9 @@ done
 exit 0
 ```
 
-### Script multi-file
+The function `process` returns 0 if the directory exists and it is executable, 1 otherwise.
+
+### Multi-file script
 
 ```shell
 $ vim lib.sh
@@ -553,41 +550,43 @@ done
 exit 0
 ```
 
+`source` works like Python `import`.
+
 ### Arrays
 
 ```shell
-# array definito vuoto
+# void array
 $ arr=()
 
-# array definito con valori all’intero
+# filled array
 $ arr=(1 2 3)
 
-# aggiunge valori ad array esistente
+# adding values
 $ arr+=(4 5)
 
-# sovrascrive valore di indice 0
+# overwirte a value
 $ arr[0]=3
 
-# mostra i valori nell’array
+# print all values
 $ echo ${arr[@]}
 
-# mostra gli indici validi dell’array
+# print all available indexes 
 $ echo ${!arr[@]}
 
-# mostra il numero di valori nell’array
+# print array length
 $ echo ${#arr[@]}
 
-# mostra n elementi partendo da indice s
+# prints n elements starting from s
 $ echo ${arr[@]:s:n}
 ```
 
-Ad esempio:
+*Example*:
 
 ```shell
 #!/bin/bash
 
 files=(/var/log/kern.log /var/log/auth.log /var/log/syslog)
-keyw=(nicola marzia)
+keyw=(lucas tom)
 
 echo "* searching ${#files[@]} files with ${#keyw[@]} keywords"
 echo "* press enter to continue..."
