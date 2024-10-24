@@ -29,8 +29,8 @@
   - [Multi-file script](#multi-file-script)
   - [Arrays](#arrays)
   - [getopts](#getopts)
-  - [Buone pratiche](#buone-pratiche)
-  - [Bash vs Python per la scrittura di script](#bash-vs-python-per-la-scrittura-di-script)
+  - [Best practice](#best-practice)
+  - [Bash vs Python for scripting](#bash-vs-python-for-scripting)
 
 ## Basics
 
@@ -602,12 +602,12 @@ done
 
 ### getopts
 
-Funzione standard (**builtin**) per gestire parametri a linea di comando. Esiste in Java, C, Python, etc.
+built-in function to manage parameters from command line. It exists also in Java, C, Python, etc.
 
-- getopts va sempre utilizzata abbinata ad un while e un case
-- La stringa "m:dh" rappresenta i parametri da controllare. Le lettere singole (e.g., d e h) rappresentano parametri senza argomenti. Le lettere seguite da **:** (e.g., m) rappresentano parametri con argomenti
-- getopts scansiona la linea di comando e ad ogni ciclo aggiorna la variabile **o** affinchè sia analizzata dal blocco case
-- Il blocco case, tipicamente, assegna a delle variabili il valore degli argomenti (**OPTARG**)
+- `getopts` must be used combined with a `while` and a `case`.
+- `"m:dh"` string represents parameters to be checked. Single characters, like `d` e `h`, represents parameters without arguments. Characters followed by `:`, like `m`, represents parameters with arguments.
+- `getopts` scans command line and, at every iteration, it updates `o` variable so that it can be analyzed by `case`.
+- `case` block usually assigns to some variables arguments' values (`OPTARG`).
 
 ```shell
 while getopts "m:dh" o; do
@@ -629,7 +629,7 @@ done
 shift $(expr $OPTIND - 1)
 ```
 
-Ad esempio:
+*Example*:
 
 ```shell
 #!/bin/bash
@@ -674,25 +674,27 @@ echo filename = "$1"
 exit 0
 ```
 
-### Buone pratiche
+### Best practice
 
-- Trattandosi di un linguaggio antico, l'indentazione è ancora facoltativa (in Python, recente, è obbligatoria!). Indentazione è comunque di fondamentale importanza!
-- Variabili globali sono MAIUSCOLE (ad es. USAGE="$0 usage: ...")
-- Il controllo dei parametri avviene in **via negativa**. Si controllano le condizioni di fallimento e, se verificate, si termina lo script ritornando un codice errore (exit 1). Questa pratica evita indentazione eccessiva
-- I valori di uscita (exit) utilizzano valori diversi per distinguere successo (exit 0) da fallimento (exit 1).Per differenziare fra diversi tipi di fallimento si possono utilizzare numeri positivi > 1 (ad es. exit 2)
-- I filesystem moderni supportano la presenza di spazi. Per questo motivo, tutte le variabili fuori dal controllo del programmatore (ad es. nomi di file) vanno espanse fra doppie virgolette (ad es. echo "$filename")
-- E' buona norma (best practice) aderire ad un canovaccio noto e consolidato:
-  - Definizione interprete
-  - Definizione variabili globali
-  - Definizione funzioni
-  - Controllo parametri
-  - Corpo principale
-  - Terminazione
+- Since it is an old language, indentation still optional. Anyway, it still be very important.
+- Global variables must be uppercase (ex. `USAGE="$0 usage: ..."`).
+- Parameters check is performed in negative way: this means that usually it has to be checked failure cases, then, if verified, script exits with an error code. This practice is necessary to avoid excessive indentation.
+- Exits codes use different values to distinguish success (`exit 0`) from failure (`exit 1`). Different type of failures can be represented using different positive numbers.
+- Since filenames can contain spaces, all variables must be expanded between double quotes (ex. echo "$filename").
+- It would be nice to organize script following this order:
+  1. Shabang.
+  2. Global variables definition.
+  3. Function definition.
+  4. Parameters check.
+  5. Body.
+  6. Termination.
+
+*Example*:
 
 ```shell
 #!/bin/bash
 
-# Definizione variabili globali
+# Global variables
 USAGE="usage: $0 dirname"
 
 # Definizione funzioni
@@ -701,7 +703,7 @@ usage() {
   exit 1
 }
 
-# Controllo parametri
+# Parameters check
 if [ $# -ne 1 ]; then
 	usage
 fi
@@ -710,7 +712,7 @@ if [ ! -d "$1" ] || [ ! -x "$1" ]; then
   usage
 fi
 
-# Corpo principale
+# Body
 F=0; D=0
 for fname in "$1"/*; do
 	if [ -f "$fname" ]; then
@@ -724,29 +726,37 @@ done
 
 echo "#files=$F, #directories=$D"
 
-# Terminazione
+# Termination
 exit 0
 ```
 
-### Bash vs Python per la scrittura di script
+### Bash vs Python for scripting
 
 **Bash**
 
-- Notissima, installata ovunque
-- Integrazione profonda con Unix (piping, ridirezione)
+Pros:
 
-* Manca supporto per OOP, strutture dati, multi-threading
-* Tool di debug scarsi
+- Notissima, installata ovunque
+- Deep Unix integration (ex. piping and redirection).
+
+Cons:
+
+* No support for OOP, data structures and multi-threading.
+* Weak debug tools.
 
 **Python**
 
-- Supporto per OOP, strutture dati, multi-threading
-- Tool di debug
+Pros:
 
-* Gestione delle dipendenze
-* Codice più prolisso per cose semplici
+- It supports OOP, data structures and multi-threading.
+- It has debug tools.
 
-L'esempio che segue mostra lo stesso programma scritto nei due linguaggi. Le somiglianze sono piuttosto evidenti.
+Cons:
+
+* Dependency managment.
+* More verbose than bash.
+
+Comparison:
 
 ```shell
 #!/bin/bash
@@ -781,3 +791,5 @@ for fname in sys.argv[1:]:
 
 sys.exit(0)
 ```
+
+They look similar.
