@@ -1,4 +1,7 @@
-# Change file manager
+# Change file manager <!-- omit from toc -->
+
+- [Identify and locate the file manager](#identify-and-locate-the-file-manager)
+- [Set a new file manager as default](#set-a-new-file-manager-as-default)
 
 ## Identify and locate the file manager
 
@@ -37,3 +40,5 @@ xdg-mime default org.gnome.Nautilus.desktop inode/directory
 ```
 
 It will set Nautilus as default file manager.
+
+[You can check if changes has been applied.](#identify-and-locate-the-file-manager)
