@@ -1,17 +1,23 @@
 # Change file manager <!-- omit from toc -->
 
+- [Sources](#sources)
 - [Identify and locate the file manager](#identify-and-locate-the-file-manager)
 - [Set a new file manager as default](#set-a-new-file-manager-as-default)
 
+## Sources
+
+- [Terminal file managers](https://www.tecmint.com/linux-terminal-file-managers/)
+- [GUI file managers](https://geekflare.com/file-managers-for-linux/)
+
 ## Identify and locate the file manager
 
-Determine the default file manager:
+After the installation of whatever file manager, you may want to make it the default one. To do this, first determine the default file manager:
 
 ```shell
 xdg-mime query default inode/directory
 ```
 
-In order to change the default manager, you have to know what desktop entry file name is called. 
+Then, you have to know what desktop entry file name is called. 
 \
 Desktop entry files are typically stored at a couple location on a Linux system:
 - `~/.local/share/applications/` for user-specific applications.
