@@ -3,6 +3,9 @@
 - [Sources](#sources)
 - [Identify and locate the file manager](#identify-and-locate-the-file-manager)
 - [Set a new file manager as default](#set-a-new-file-manager-as-default)
+- [Example: KDE on Ubuntu](#example-kde-on-ubuntu)
+  - [Installation](#installation)
+  - [Uninstallation](#uninstallation)
 
 ## Sources
 
@@ -48,3 +51,20 @@ xdg-mime default org.gnome.Nautilus.desktop inode/directory
 It will set Nautilus as default file manager.
 
 [You can check if changes has been applied.](#identify-and-locate-the-file-manager)
+
+## Example: KDE on Ubuntu
+
+### Installation
+
+```shell
+sudo apt install kde-full   # or whatever package you want
+```
+
+### Uninstallation
+
+```shell
+sudo apt remove kde-full
+sudo apt autoremove
+sudo apt remove libkf5*
+sudo apt autoremove
+```
