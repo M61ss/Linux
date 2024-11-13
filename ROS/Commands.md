@@ -4,6 +4,7 @@
 - [Obtaining list of running components](#obtaining-list-of-running-components)
     - [Options](#options)
 - [Fetching informations](#fetching-informations)
+    - [Options](#options-1)
 - [rqt](#rqt)
   - [Run rqt](#run-rqt)
   - [rqt graph](#rqt-graph)
@@ -14,7 +15,7 @@
   - [See data published on a topic](#see-data-published-on-a-topic)
   - [Knowing structure of input](#knowing-structure-of-input)
   - [Publish data on a topic from command line](#publish-data-on-a-topic-from-command-line)
-    - [Options](#options-1)
+    - [Options](#options-2)
   - [Publication rate](#publication-rate)
   - [Bandwith used by a topic](#bandwith-used-by-a-topic)
   - [Find a topic of a given type](#find-a-topic-of-a-given-type)
@@ -54,6 +55,10 @@ ros2 topic info <topic_name>
 ros2 service info <service_name>
 ros2 action info <action_name>
 ```
+
+#### Options
+
+- `-v`: means "verbose". It provides more details.
 
 ## rqt
 
