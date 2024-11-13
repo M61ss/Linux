@@ -1,7 +1,7 @@
 # Commands <!-- omit from toc -->
 
 - [Source setup files](#source-setup-files)
-- [Obtaining list of running elements](#obtaining-list-of-running-elements)
+- [Obtaining list of running components](#obtaining-list-of-running-components)
     - [Options](#options)
 - [Fetching informations](#fetching-informations)
 - [rqt](#rqt)
@@ -12,9 +12,17 @@
   - [Run node with a different name](#run-node-with-a-different-name)
 - [Topic](#topic)
   - [See data published on a topic](#see-data-published-on-a-topic)
-  - [Learn details about a specific msg](#learn-details-about-a-specific-msg)
+  - [Knowing structure of input](#knowing-structure-of-input)
   - [Publish data on a topic from command line](#publish-data-on-a-topic-from-command-line)
     - [Options](#options-1)
+  - [Publication rate](#publication-rate)
+  - [Bandwith used by a topic](#bandwith-used-by-a-topic)
+  - [Find a topic of a given type](#find-a-topic-of-a-given-type)
+- [Service](#service)
+  - [Service type](#service-type)
+  - [Find a service of a given type](#find-a-service-of-a-given-type)
+  - [Knowing structure of input](#knowing-structure-of-input-1)
+  - [Call a service](#call-a-service)
 - [Documentation](#documentation)
 
 ## Source setup files
@@ -25,7 +33,7 @@
 source /opt/ros/humble/setup.bash
 ```
 
-## Obtaining list of running elements
+## Obtaining list of running components
 
 ```shell
 ros2 node list
@@ -91,9 +99,9 @@ ros2 topic echo <topic_name>
 
 It keeps running showing data published on that topic as soon as data are entered.
 
-### Learn details about a specific msg
+### Knowing structure of input
 
-If we want to learn what structure of data the message expects and some other details:
+If we want to learn what structure of data the message (input) expects and some other details:
 
 ```shell
 ros2 interface show <msg_type>
@@ -124,7 +132,68 @@ Inside double quotes there are data formatted according [msg details](#learn-det
 #### Options
 
 - `--once`: data are published on the topic only once rather than continuously.
-- `-w n`: is an optional argument meaning “wait for n matching subscriptions”. This is needed if we want to wait to publish data until there are `n` subscription to the topic. `n` must be a whole positive number.
+- `-w n`: means “wait for n matching subscriptions”. This is needed if we want to wait to publish data until there are `n` subscription to the topic. `n` must be a whole positive number.
+- `--rate n`: specifies the [publication rate](#publication-rate) of data on that topic. `n` represents the rate in Hz.
+
+### Publication rate
+
+You can also view the rate, measured in Hz, at which data is published using:
+
+```shell
+ros2 topic hz <topic_name>
+```
+
+### Bandwith used by a topic
+
+The bandwidth used by a topic can be viewed using:
+
+```shell
+ros2 topic bw <topic_name>
+```
+
+It returns the bandwidth utilization and number of messages being published to the topic.
+
+### Find a topic of a given type
+
+To list a list of available topics of a given type use:
+
+```shell
+ros2 topic find <topic_type>
+```
+
+## Service
+
+### Service type
+
+To find out the type of a service, use the command:
+
+```shell
+ros2 service type <service_name>
+```
+
+### Find a service of a given type
+
+If you want to find all the services of a specific type, you can use the command:
+
+```shell
+ros2 service find <type_name>
+```
+
+### Knowing structure of input
+
+If we want to learn what is the expected input structure:
+
+```shell
+ros2 interface show <type_name>
+```
+
+### Call a service
+
+You can call a service using:
+
+```shell
+ros2 service call <service_name> <service_type> <arguments>
+```
 
 ## Documentation
 
