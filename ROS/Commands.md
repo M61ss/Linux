@@ -1,30 +1,42 @@
-# Commands <!-- omit from toc -->
+# Index <!-- omit from toc -->
 
-- [Source setup files](#source-setup-files)
-- [Obtaining list of running components](#obtaining-list-of-running-components)
-    - [Options](#options)
-- [Fetching informations](#fetching-informations)
-    - [Options](#options-1)
+- [Documentation](#documentation)
+- [ROS CLI](#ros-cli)
+  - [Source setup files](#source-setup-files)
+  - [Listing running components: `list`](#listing-running-components-list)
+  - [Fetching informations: `info`](#fetching-informations-info)
+  - [Node](#node)
+    - [Run node: `run`](#run-node-run)
+  - [Topic](#topic)
+    - [See data published on a topic: `topic echo`](#see-data-published-on-a-topic-topic-echo)
+    - [Knowing structure of input: `interface show`](#knowing-structure-of-input-interface-show)
+    - [Publish data on a topic from command line: `topic pub`](#publish-data-on-a-topic-from-command-line-topic-pub)
+    - [Publication rate: `topic hz`](#publication-rate-topic-hz)
+    - [Bandwith used by a topic: `topic bw`](#bandwith-used-by-a-topic-topic-bw)
+    - [Find a topic of a given: `topic find`](#find-a-topic-of-a-given-topic-find)
+  - [Service](#service)
+    - [Service type: `service type`](#service-type-service-type)
+    - [Find a service of a given type: `service find`](#find-a-service-of-a-given-type-service-find)
+    - [Knowing structure of input: `interface show`](#knowing-structure-of-input-interface-show-1)
+    - [Call a service: `service call`](#call-a-service-service-call)
+  - [Parameter](#parameter)
+    - [Type and value of a parameter: `param get`](#type-and-value-of-a-parameter-param-get)
+    - [Change the value of a parameter: `param set`](#change-the-value-of-a-parameter-param-set)
+    - [View node's parameters: `param dump`](#view-nodes-parameters-param-dump)
+    - [Load parameters from a file: `param load`](#load-parameters-from-a-file-param-load)
+  - [Action](#action)
+    - [Knowing structure of input: `interface show`](#knowing-structure-of-input-interface-show-2)
+    - [Send action goal: `action send_goal`](#send-action-goal-action-send_goal)
 - [rqt](#rqt)
   - [Run rqt](#run-rqt)
   - [rqt graph](#rqt-graph)
-- [Node](#node)
-  - [Run node](#run-node)
-  - [Run node with a different name](#run-node-with-a-different-name)
-- [Topic](#topic)
-  - [See data published on a topic](#see-data-published-on-a-topic)
-  - [Knowing structure of input](#knowing-structure-of-input)
-  - [Publish data on a topic from command line](#publish-data-on-a-topic-from-command-line)
-    - [Options](#options-2)
-  - [Publication rate](#publication-rate)
-  - [Bandwith used by a topic](#bandwith-used-by-a-topic)
-  - [Find a topic of a given type](#find-a-topic-of-a-given-type)
-- [Service](#service)
-  - [Service type](#service-type)
-  - [Find a service of a given type](#find-a-service-of-a-given-type)
-  - [Knowing structure of input](#knowing-structure-of-input-1)
-  - [Call a service](#call-a-service)
-- [Documentation](#documentation)
+  - [rqt console](#rqt-console)
+
+# Documentation
+
+[ROS 2 - Humble](https://docs.ros.org/en/humble/index.html)
+
+# ROS CLI
 
 ## Source setup files
 
@@ -34,7 +46,7 @@
 source /opt/ros/humble/setup.bash
 ```
 
-## Obtaining list of running components
+## Listing running components: `list`
 
 ```shell
 ros2 node list
@@ -43,11 +55,11 @@ ros2 service list
 ros2 action list
 ```
 
-#### Options
+#### Options <!-- omit from toc -->
 
-- `-t`: will return the same list of topics, this time with the topic type appended in brackets.
+- `-t` (NOT for node): will return the same list, this time with the corresponding type appended in brackets.
 
-## Fetching informations
+## Fetching informations: `info`
 
 ```shell
 ros2 node info <node_name>
@@ -56,47 +68,26 @@ ros2 service info <service_name>
 ros2 action info <action_name>
 ```
 
-#### Options
+#### Options <!-- omit from toc -->
 
 - `-v`: means "verbose". It provides more details.
 
-## rqt
-
-### Run rqt
-
-To run rqt:
-
-```shell
-rqt
-```
-
-### rqt graph
-
-To visualize the changing nodes and topics and connections between them, run:
-
-```shell
-rqt_graph
-```
-
-Anyway, you can open rqt, then select from the menu: Plugins > Introspection > Node Graph.
-
 ## Node
 
-### Run node
+### Run node: `run`
 
 ```shell
 ros2 run <package_name> <node_name>
 ```
 
-### Run node with a different name
+#### Options <!-- omit from toc -->
 
-```shell
-ros2 run <package_name> <node_name> --ros-args --remap __node:=<new_node_name>
-```
+- `--ros-args --params-file <file_name>`: start the node using [parameters from the specified file](#load-parameters-from-a-file).
+- `--ros-args --remap __node:=<new_node_name>`: it runs the node with a different name
 
 ## Topic
 
-### See data published on a topic
+### See data published on a topic: `topic echo`
 
 ```shell
 ros2 topic echo <topic_name>
@@ -104,7 +95,7 @@ ros2 topic echo <topic_name>
 
 It keeps running showing data published on that topic as soon as data are entered.
 
-### Knowing structure of input
+### Knowing structure of input: `interface show`
 
 If we want to learn what structure of data the message (input) expects and some other details:
 
@@ -114,7 +105,7 @@ ros2 interface show <msg_type>
 
 `<msg_type>` is obtained [fetching informations](#fetching-informations) about a topic.
 
-### Publish data on a topic from command line
+### Publish data on a topic from command line: `topic pub`
 
 There is the possibility to publish data on a topic directly from the command line:
 
@@ -134,13 +125,13 @@ ros2 topic pub /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.
 
 Inside double quotes there are data formatted according [msg details](#learn-details-about-a-specific-msg).
 
-#### Options
+#### Options <!-- omit from toc -->
 
 - `--once`: data are published on the topic only once rather than continuously.
 - `-w n`: means “wait for n matching subscriptions”. This is needed if we want to wait to publish data until there are `n` subscription to the topic. `n` must be a whole positive number.
 - `--rate n`: specifies the [publication rate](#publication-rate) of data on that topic. `n` represents the rate in Hz.
 
-### Publication rate
+### Publication rate: `topic hz`
 
 You can also view the rate, measured in Hz, at which data is published using:
 
@@ -148,7 +139,7 @@ You can also view the rate, measured in Hz, at which data is published using:
 ros2 topic hz <topic_name>
 ```
 
-### Bandwith used by a topic
+### Bandwith used by a topic: `topic bw`
 
 The bandwidth used by a topic can be viewed using:
 
@@ -158,7 +149,7 @@ ros2 topic bw <topic_name>
 
 It returns the bandwidth utilization and number of messages being published to the topic.
 
-### Find a topic of a given type
+### Find a topic of a given: `topic find`
 
 To list a list of available topics of a given type use:
 
@@ -168,7 +159,7 @@ ros2 topic find <topic_type>
 
 ## Service
 
-### Service type
+### Service type: `service type`
 
 To find out the type of a service, use the command:
 
@@ -176,7 +167,7 @@ To find out the type of a service, use the command:
 ros2 service type <service_name>
 ```
 
-### Find a service of a given type
+### Find a service of a given type: `service find`
 
 If you want to find all the services of a specific type, you can use the command:
 
@@ -184,15 +175,15 @@ If you want to find all the services of a specific type, you can use the command
 ros2 service find <type_name>
 ```
 
-### Knowing structure of input
+### Knowing structure of input: `interface show`
 
 If we want to learn what is the expected input structure:
 
 ```shell
-ros2 interface show <type_name>
+ros2 interface show <service_type>
 ```
 
-### Call a service
+### Call a service: `service call`
 
 You can call a service using:
 
@@ -200,6 +191,98 @@ You can call a service using:
 ros2 service call <service_name> <service_type> <arguments>
 ```
 
-## Documentation
+## Parameter
 
-[ROS 2 - Humble](https://docs.ros.org/en/humble/index.html)
+### Type and value of a parameter: `param get`
+
+To display the type and current value of a parameter, use the command:
+
+```shell
+ros2 param get <node_name> <parameter_name>
+```
+
+### Change the value of a parameter: `param set`
+
+To change a parameter's value at runtime, use the command:
+
+```shell
+ros2 param set <node_name> <parameter_name> <value>
+```
+
+> [!WARNING]
+>
+> `<value>` must be in YAML format.
+
+### View node's parameters: `param dump`
+
+You can view all of a node's current parameter values by using the command:
+
+```shell
+ros2 param dump <node_name>
+```
+
+### Load parameters from a file: `param load`
+
+You can load parameters from a file to a currently running node using the command:
+
+```shell
+ros2 param load <node_name> <parameter_file>
+```
+
+> [!WARNING]
+>
+> `<parameter_file>` must contain values in YAML format.
+
+## Action
+
+### Knowing structure of input: `interface show`
+
+If we want to learn what is the expected input structure:
+
+```shell
+ros2 interface show <action_type>
+```
+
+### Send action goal: `action send_goal`
+
+Send an action goal from the command line with the following syntax:
+
+```shell
+ros2 action send_goal <action_name> <action_type> <values>
+```
+
+> [!WARNING]
+>
+> `<values>` must be in YAML format.
+
+#### Options <!-- omit from toc -->
+
+- `--feedback`: see the feedback of the action goal.
+
+# rqt
+
+## Run rqt
+
+To run rqt:
+
+```shell
+rqt
+```
+
+## rqt graph
+
+To visualize the changing nodes and topics and connections between them, run:
+
+```shell
+rqt_graph
+```
+
+Anyway, you can open rqt, then select from the menu: Plugins > Introspection > Node Graph.
+
+## rqt console
+
+Start `rqt_console` in a new terminal with the following command:
+
+```shell
+ros2 run rqt_console rqt_console
+```
