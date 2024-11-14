@@ -7,6 +7,7 @@
   - [Fetching informations: `info`](#fetching-informations-info)
   - [Node](#node)
     - [Run node: `run`](#run-node-run)
+    - [Run multiple nodes: `launch`](#run-multiple-nodes-launch)
   - [Topic](#topic)
     - [See data published on a topic: `topic echo`](#see-data-published-on-a-topic-topic-echo)
     - [Knowing structure of input: `interface show`](#knowing-structure-of-input-interface-show)
@@ -14,6 +15,7 @@
     - [Publication rate: `topic hz`](#publication-rate-topic-hz)
     - [Bandwith used by a topic: `topic bw`](#bandwith-used-by-a-topic-topic-bw)
     - [Find a topic of a given: `topic find`](#find-a-topic-of-a-given-topic-find)
+    - [Record data published on a topic: `bag`](#record-data-published-on-a-topic-bag)
   - [Service](#service)
     - [Service type: `service type`](#service-type-service-type)
     - [Find a service of a given type: `service find`](#find-a-service-of-a-given-type-service-find)
@@ -31,6 +33,7 @@
   - [Run rqt](#run-rqt)
   - [rqt graph](#rqt-graph)
   - [rqt console](#rqt-console)
+    - [Logger levels](#logger-levels)
 
 # Documentation
 
@@ -84,6 +87,15 @@ ros2 run <package_name> <node_name>
 
 - `--ros-args --params-file <file_name>`: start the node using [parameters from the specified file](#load-parameters-from-a-file).
 - `--ros-args --remap __node:=<new_node_name>`: it runs the node with a different name
+- `--ros-args --log-level <LEVEL>`: sets the default [logger level](#logger-levels).
+
+### Run multiple nodes: `launch`
+
+```shell
+ros2 launch <package_name> <file>
+```
+
+Where `<file>` could be, for instance, a `.py` script.
 
 ## Topic
 
@@ -129,7 +141,7 @@ Inside double quotes there are data formatted according [msg details](#learn-det
 
 - `--once`: data are published on the topic only once rather than continuously.
 - `-w n`: means “wait for n matching subscriptions”. This is needed if we want to wait to publish data until there are `n` subscription to the topic. `n` must be a whole positive number.
-- `--rate n`: specifies the [publication rate](#publication-rate) of data on that topic. `n` represents the rate in Hz.
+- `-r n`: specifies the [publication rate](#publication-rate) of data on that topic. `n` represents the rate in Hz.
 
 ### Publication rate: `topic hz`
 
@@ -155,6 +167,22 @@ To list a list of available topics of a given type use:
 
 ```shell
 ros2 topic find <topic_type>
+```
+
+### Record data published on a topic: `bag`
+
+To record the data published to one or more topics create a dedicated folder to store the output, move into it from the terminal, then use the command syntax:
+
+```shell
+ros2 bag record -o <destination_file> <topic1_name> <topic2_name> <topicN_name>
+```
+
+Where `-o` specifies the name of `<destination_file>` 
+
+You can see details about your recording by running:
+
+```shell
+ros2 bag info <bag_file_name>
 ```
 
 ## Service
@@ -286,3 +314,13 @@ Start `rqt_console` in a new terminal with the following command:
 ```shell
 ros2 run rqt_console rqt_console
 ```
+
+### Logger levels
+
+- `Fatal`: messages indicate the system is going to terminate to try to protect itself from detriment.
+- `Error`: messages indicate significant issues that won't necessarily damage the system, but are preventing it from functioning properly.
+- `Warn`: messages indicate unexpected activity or non-ideal results that might represent a deeper issue, but don't harm functionality outright.
+- `Info`: messages indicate event and status updates that serve as a visual verification that the system is running as expected.
+- `Debug`: messages detail the entire step-by-step process of the system execution.
+
+The default level is `Info`, so only `Debug` is excluded from logging.
