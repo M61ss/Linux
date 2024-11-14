@@ -1,13 +1,13 @@
 # ROS2 - Coding modules <!-- omit from toc -->
 
-- [`colon`](#colon)
+- [`colcon`](#colcon)
   - [Build](#build)
   - [Test](#test)
   - [Create a package based on template](#create-a-package-based-on-template)
   - [`colcon_cd`](#colcon_cd)
   - [colcon tab completion](#colcon-tab-completion)
 
-## `colon`
+## `colcon`
 
 ```shell
 sudo apt install python3-colcon-common-extensions
