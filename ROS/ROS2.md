@@ -1,7 +1,6 @@
-# Index <!-- omit from toc -->
+# ROS2 - CLI reference <!-- omit from toc -->
 
 - [Documentation](#documentation)
-- [ROS CLI](#ros-cli)
   - [Source setup files](#source-setup-files)
   - [Listing running components: `list`](#listing-running-components-list)
   - [Fetching informations: `info`](#fetching-informations-info)
@@ -29,17 +28,10 @@
   - [Action](#action)
     - [Knowing structure of input: `interface show`](#knowing-structure-of-input-interface-show-2)
     - [Send action goal: `action send_goal`](#send-action-goal-action-send_goal)
-- [rqt](#rqt)
-  - [Run rqt](#run-rqt)
-  - [rqt graph](#rqt-graph)
-  - [rqt console](#rqt-console)
-    - [Logger levels](#logger-levels)
 
 # Documentation
 
 [ROS 2 - Humble](https://docs.ros.org/en/humble/index.html)
-
-# ROS CLI
 
 ## Source setup files
 
@@ -87,7 +79,7 @@ ros2 run <package_name> <node_name>
 
 - `--ros-args --params-file <file_name>`: start the node using [parameters from the specified file](#load-parameters-from-a-file).
 - `--ros-args --remap __node:=<new_node_name>`: it runs the node with a different name
-- `--ros-args --log-level <LEVEL>`: sets the default [logger level](#logger-levels).
+- `--ros-args --log-level <LEVEL>`: sets the default [logger level](rqt.md#logger-levels).
 
 ### Run multiple nodes: `launch`
 
@@ -296,41 +288,3 @@ ros2 action send_goal <action_name> <action_type> <values>
 #### Options <!-- omit from toc -->
 
 - `--feedback`: see the feedback of the action goal.
-
-# rqt
-
-## Run rqt
-
-To run rqt:
-
-```shell
-rqt
-```
-
-## rqt graph
-
-To visualize the changing nodes and topics and connections between them, run:
-
-```shell
-rqt_graph
-```
-
-Anyway, you can open rqt, then select from the menu: Plugins > Introspection > Node Graph.
-
-## rqt console
-
-Start `rqt_console` in a new terminal with the following command:
-
-```shell
-ros2 run rqt_console rqt_console
-```
-
-### Logger levels
-
-- `Fatal`: messages indicate the system is going to terminate to try to protect itself from detriment.
-- `Error`: messages indicate significant issues that won't necessarily damage the system, but are preventing it from functioning properly.
-- `Warn`: messages indicate unexpected activity or non-ideal results that might represent a deeper issue, but don't harm functionality outright.
-- `Info`: messages indicate event and status updates that serve as a visual verification that the system is running as expected.
-- `Debug`: messages detail the entire step-by-step process of the system execution.
-
-The default level is `Info`, so only `Debug` is excluded from logging.
