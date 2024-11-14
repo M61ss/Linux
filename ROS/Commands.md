@@ -185,6 +185,16 @@ You can see details about your recording by running:
 ros2 bag info <bag_file_name>
 ```
 
+To use data stored in a bag use:
+
+```shell
+ros2 bag play <bag_file_name>
+```
+
+> [!WARNING]
+>
+> Before running the above command, be sure to stop all nodes which publish on the topic that recieve data from the `<bag_file_name>`. 
+
 ## Service
 
 ### Service type: `service type`
