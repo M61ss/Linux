@@ -9,6 +9,9 @@
   - [Create a package based on template](#create-a-package-based-on-template)
   - [`colcon_cd`](#colcon_cd)
   - [colcon tab completion](#colcon-tab-completion)
+- [Package](#package)
+  - [Content](#content)
+  - [Create a new package](#create-a-new-package)
 
 ## Build
 
@@ -60,20 +63,19 @@ After the build is finished, we should see the `build`, `install`, and `log` dir
 - `--symlink-install`: saves you from having to rebuild every time you tweak python scripts.
 - `--event-handlers`: console_direct+ shows console output while building (can otherwise be found in the log directory).
 - `--executor`: sequential processes the packages one by one instead of using parallelism.
+- `--packages-select <package_name>`: allows to build only `<package_name>`.
 
 ### Source underlay and overlay
 
-Frist of all, source the underlay environment:
-
-```shell
-source /opt/ros/humble/setup.bash
-```
-
-Then, to source your overlay move to your root folder and run:
+To source your overlay move to your root folder and run:
 
 ```shell
 source install/local_setup.bash
 ```
+
+> [!NOTE] 
+>
+> It is an overlay because it lays on top of the underlay, which is ROS. As always ROS must be [sourced](ROS2%20-%20CLI.md#source-setup-files). 
 
 ### Test
 
@@ -109,3 +111,38 @@ See the [documentation](https://colcon.readthedocs.io/en/released/user/installat
 ### colcon tab completion
 
 The colcon command supports command completion for bash and bash-like shells. The `colcon-argcomplete` package must be installed and [some setup](https://colcon.readthedocs.io/en/released/user/installation.html#enable-completion) may be required to make it work.
+
+## Package
+
+### Content
+
+The minimum content of a ROS package is:
+
+- **CMake**:
+  
+  - `CMakeLists.txt` file that describes how to build the code within the package.
+  - `include/<package_name>` directory containing the public headers for the package.
+  - `package.xml`: file containing meta information about the package.
+  - `src`: directory containing the source code for the package.
+
+- **Python**:
+  
+  - `package.xml`: file containing meta information about the package.
+  - `resource/<package_name>`: marker file for the package.
+  - `setup.cfg`: is required when a package has executables, so ros2 run can find them.
+  - `setup.py`: containing instructions for how to install the package.
+  - `<package_name>`: a directory with the same name as your package, used by ROS 2 tools to find your package, contains `__init__.py`.
+
+### Create a new package
+
+- **CMake**:
+  
+  ```shell
+  ros2 pkg create --build-type ament_cmake --license Apache-2.0 <package_name>
+  ```
+
+- **Python**:
+  
+  ```shell
+  ros2 pkg create --build-type ament_python --license Apache-2.0 <package_name>
+  ```
