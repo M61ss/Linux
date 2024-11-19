@@ -48,3 +48,7 @@ It will display all messages sent on `/keyboard/keypress` topic.
 
 - `-t "<topic_name>"`: specifies the topic to publish to.
 - `-e`: for "echo", allows to display messages on terminal.
+
+### Triggered publisher
+
+See [this](./tutorials/triggered_publisher.md).
