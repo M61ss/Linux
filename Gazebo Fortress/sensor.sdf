@@ -23,6 +23,18 @@
                 name="ignition::gazebo::systems::Imu">
         </plugin>
 
+        <!-- IMU contact sensor plugin -->
+        <plugin filename="libignition-gazebo-contact-system.so"
+                name="ignition::gazebo::systems::Contact">
+        </plugin>
+
+        <!-- Lidar plugin -->
+        <plugin
+          filename="libignition-gazebo-sensors-system.so"
+          name="ignition::gazebo::systems::Sensors">
+          <render_engine>ogre2</render_engine>
+        </plugin>
+
         <light type="directional" name="sun">
             <cast_shadows>true</cast_shadows>
             <pose>0 0 10 0 0 0</pose>
@@ -108,6 +120,11 @@
                     <visualize>true</visualize>
                     <topic>imu</topic>
                 </sensor>
+
+                <!-- Lidar frame -->
+                <frame name="lidar_frame" attached_to='chassis'>
+                    <pose>0.8 0 0.5 0 0 0</pose>
+                </frame>
             </link>
 
             <!--Left wheel-->
@@ -307,6 +324,33 @@
                     </geometry>
                 </collision>
             </link>
+
+            <!-- Contact sensor -->
+            <sensor name='sensor_contact' type='contact'>
+                <contact>
+                    <collision>collision</collision>
+                </contact>
+            </sensor>
+
+            <!-- Touch plugin -->
+            <plugin filename="libignition-gazebo-touchplugin-system.so"
+                    name="ignition::gazebo::systems::TouchPlugin">
+                <target>vehicle_blue</target>
+                <namespace>wall</namespace>
+                <time>0.001</time>
+                <enabled>true</enabled>
+            </plugin>
+
+            <!-- Triggered publisher -->
+            <plugin filename="libignition-gazebo-triggered-publisher-system.so"
+                    name="ignition::gazebo::systems::TriggeredPublisher">
+                <input type="ignition.msgs.Boolean" topic="/wall/touched">
+                    <match>data: true</match>
+                </input>
+                <output type="ignition.msgs.Twist" topic="/cmd_vel">
+                    linear: {x: 0.0}, angular: {z: 0.0}
+                </output>
+            </plugin>
         </model>
     </world>
 </sdf>
