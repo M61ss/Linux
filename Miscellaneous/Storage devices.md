@@ -1,3 +1,18 @@
+# Index <!-- omit from toc -->
+
+- [Find all storage devices](#find-all-storage-devices)
+- [Format an usb device](#format-an-usb-device)
+  - [Unmount the usb device](#unmount-the-usb-device)
+  - [Create a new partition](#create-a-new-partition)
+    - [Basic procedure](#basic-procedure)
+  - [Format the device](#format-the-device)
+    - [ext4](#ext4)
+    - [NTFS](#ntfs)
+    - [FAT nad VFAT](#fat-nad-vfat)
+    - [exFAT](#exfat)
+    - [Btrfs](#btrfs)
+    - [XFS](#xfs)
+
 # Find all storage devices
 
 TODO: https://www.baeldung.com/linux/find-all-storage-devices
