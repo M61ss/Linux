@@ -1,4 +1,4 @@
-# How to compile the Linux kernel
+# Compile the Linux kernel
 
 Install whatever source code you want.
 
@@ -56,4 +56,16 @@ For a depth clean:
 
 ```shell
 make mrproper
+```
+
+# Install the Linux kernel
+
+```shell
+sudo make modules_install install
+```
+
+Remeber to update grub (or whatever bootloader you use) in order to see the new boot entry at the next reboot:
+
+```shell
+sudo update-grub2
 ```
