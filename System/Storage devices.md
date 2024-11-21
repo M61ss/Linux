@@ -3,6 +3,10 @@
 - [Find all storage devices](#find-all-storage-devices)
   - [Use `proc` filesystem](#use-proc-filesystem)
   - [`fdisk`](#fdisk)
+  - [`lsblk`](#lsblk)
+  - [`lshw`](#lshw)
+  - [`parted`](#parted)
+  - [`sfdisk`](#sfdisk)
 - [Partition storage device](#partition-storage-device)
   - [Unmount the device](#unmount-the-device)
   - [Create a new partition](#create-a-new-partition)
@@ -33,7 +37,39 @@ Learn more about `proc` [here](Kernel/Drivers/proc%20drivers.md).
 sudo fdisk -l
 ```
 
-It prompts the complete list of devices with detailed informations.
+It prompts the complete list of devices with **detailed** informations.
+
+## `lsblk`
+
+```shell
+lsblk
+```
+
+"List of blocks" lists all the block storage devices attached to the system in a very clear **hierarchy**.
+
+## `lshw`
+
+```shell
+lshw -class disk
+```
+
+"List hardware" by default lists all storage devices connected to the system.
+
+## `parted`
+
+```shell
+sudo parted -l
+```
+
+Works like [`fdisk`](#fdisk).
+
+## `sfdisk`
+
+```shell
+sudo sfdisk -l
+```
+
+It is an advanced version of [`fdisk`](#fdisk).
 
 # Partition storage device
 

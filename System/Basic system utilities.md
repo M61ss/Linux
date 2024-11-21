@@ -41,3 +41,15 @@ To set the default font use:
 ```shell
 setfont
 ```
+
+## `lshw`
+
+```shell
+lshw
+```
+
+"List hardware" by default lists all the hardware devices connected to the system.
+
+#### Options <!-- omit from toc -->
+
+`-class <class>`: filter the list and display only `<class>` devices.
