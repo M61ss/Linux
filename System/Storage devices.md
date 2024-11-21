@@ -1,6 +1,8 @@
 # Index <!-- omit from toc -->
 
 - [Find all storage devices](#find-all-storage-devices)
+  - [Use `proc` filesystem](#use-proc-filesystem)
+  - [`fdisk`](#fdisk)
 - [Partition storage device](#partition-storage-device)
   - [Unmount the device](#unmount-the-device)
   - [Create a new partition](#create-a-new-partition)
@@ -15,7 +17,23 @@
 
 # Find all storage devices
 
-TODO: https://www.baeldung.com/linux/find-all-storage-devices
+## Use `proc` filesystem
+
+The simplest way to list devices and their partitions is to run:
+
+```shell
+cat /proc/partitions
+```
+
+Learn more about `proc` [here](Kernel/Drivers/proc%20drivers.md).
+
+## `fdisk`
+
+```shell
+sudo fdisk -l
+```
+
+It prompts the complete list of devices with detailed informations.
 
 # Partition storage device
 

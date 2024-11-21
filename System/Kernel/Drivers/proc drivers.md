@@ -197,7 +197,7 @@ In case of failure of the last point, the kernel revert all changes, then `init_
 
 The `/proc/` folder is a pseudo-filesystem used to access to process information provided by the kernel.
 \
-Files inside this folder are used to give the possibility to the user to use loaded drivers via softwares that use files inside `/proc/` folder.
+Files inside this folder are used to give the possibility to the user to use loaded drivers via softwares that use files inside `/proc/` folder. It works like a big interface.
 
 > Other info at [Procfs - Wikipedia](https://en.wikipedia.org/wiki/Procfs)
 
