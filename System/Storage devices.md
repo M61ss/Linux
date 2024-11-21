@@ -1,7 +1,7 @@
 # Index <!-- omit from toc -->
 
 - [Find all storage devices](#find-all-storage-devices)
-- [Format a storage device](#format-a-storage-device)
+- [Partition storage device](#partition-storage-device)
   - [Unmount the device](#unmount-the-device)
   - [Create a new partition](#create-a-new-partition)
     - [Basic procedure](#basic-procedure)
@@ -17,7 +17,7 @@
 
 TODO: https://www.baeldung.com/linux/find-all-storage-devices
 
-# Format a storage device
+# Partition storage device
 
 ## Unmount the device
 
@@ -58,6 +58,11 @@ sudo fdisk /dev/<device_name>
 **Options could be a lot. Following instructions are only an example.**
 
 1. Select partition table layout: type `g` for GPT.
+   
+   > [!WARNING]
+   >
+   > This step erases all device partitons. If you only want to create a new partition skip this.
+
 2. Create a new partition: type `n` to create a new partition and accept all default settings.
 3. Write changes on disk: type `w`.
 
