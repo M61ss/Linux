@@ -1,8 +1,8 @@
 # Index <!-- omit from toc -->
 
 - [Find all storage devices](#find-all-storage-devices)
-- [Format an usb device](#format-an-usb-device)
-  - [Unmount the usb device](#unmount-the-usb-device)
+- [Format a storage device](#format-a-storage-device)
+  - [Unmount the device](#unmount-the-device)
   - [Create a new partition](#create-a-new-partition)
     - [Basic procedure](#basic-procedure)
   - [Format the device](#format-the-device)
@@ -17,11 +17,11 @@
 
 TODO: https://www.baeldung.com/linux/find-all-storage-devices
 
-# Format an usb device
+# Format a storage device
 
-## Unmount the usb device
+## Unmount the device
 
-Search your usb device inside the list prompted by:
+Search your device inside the list prompted by:
 
 ```shell
 lsblk
@@ -29,14 +29,15 @@ lsblk
 
 > [!IMPORTANT]
 >
-> It is important to correctly read the output:
+> It is important to correctly read the output. For instance:
 >
 > ```shell
 > sdb       # device
-> └─sdb1    # partition
+> └─sdb1    # partition 1
+> └─sdb2    # partition 2
+> ...
+> └─sdb2    # partition n
 > ```
->
-> Could be multiple partitions for the same disk.
 
 Then, unmount all mounted partitions using this command:
 
