@@ -1,17 +1,39 @@
 # Some basic system utilities
 
-## Keyboard layout
+## `localectl`
 
-You can get available keyboard layout running:
+### Virtual console keymaps
+
+You can get available virtual console keymaps running:
 
 ```shell
 localectl list-keymaps
 ```
 
-You can set one of listed layout using:
+You can set one of listed keymap using:
 
 ```shell
-loadkeys <layout>
+loadkeys <keymap>
+```
+
+### Keyboard layout
+
+You can get the current keyboard layout running:
+
+```shell
+localectl status
+```
+
+You can list available keyboard layouts running:
+
+```shell
+localectl list-locales
+```
+
+Then, you can change it using:
+
+```shell
+localectl set-locales <locale>
 ```
 
 ## `timedatectl`
