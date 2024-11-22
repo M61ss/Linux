@@ -26,7 +26,7 @@
   - [`while`](#while)
   - [Expand filenames](#expand-filenames)
 - [Functions](#functions)
-  - [Multi-file script](#multi-file-script)
+  - [Multi-file script: `source`](#multi-file-script-source)
   - [Arrays](#arrays)
   - [getopts](#getopts)
   - [Best practice](#best-practice)
@@ -517,7 +517,7 @@ exit 0
 
 The function `process` returns 0 if the directory exists and it is executable, 1 otherwise.
 
-### Multi-file script
+### Multi-file script: `source`
 
 ```shell
 $ vim lib.sh
