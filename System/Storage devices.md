@@ -7,7 +7,8 @@
   - [`lshw`](#lshw)
   - [`parted`](#parted)
   - [`sfdisk`](#sfdisk)
-- [Partition storage device](#partition-storage-device)
+- [`mount` and `umount`](#mount-and-umount)
+- [Partition storage device: `fdisk`](#partition-storage-device-fdisk)
   - [Unmount the device](#unmount-the-device)
   - [Create a new partition](#create-a-new-partition)
     - [Basic procedure](#basic-procedure)
@@ -38,6 +39,8 @@ sudo fdisk -l
 ```
 
 It prompts the complete list of devices with **detailed** informations.
+
+Learn more about `fdisk` [here](#partition-storage-device-fdisk).
 
 ## `lsblk`
 
@@ -71,7 +74,11 @@ sudo sfdisk -l
 
 It is an advanced version of [`fdisk`](#fdisk).
 
-# Partition storage device
+# `mount` and `umount`
+
+TODO
+
+# Partition storage device: `fdisk`
 
 ## Unmount the device
 
