@@ -1,6 +1,15 @@
 # Some basic system utilities
 
-## `localectl`
+- [Some basic system utilities](#some-basic-system-utilities)
+  - [Keymaps and kbd layout: `localectl`](#keymaps-and-kbd-layout-localectl)
+    - [Virtual console keymaps](#virtual-console-keymaps)
+    - [Keyboard layout](#keyboard-layout)
+  - [Clock and timezone: `timedatectl`](#clock-and-timezone-timedatectl)
+  - [Console font: `setfont`](#console-font-setfont)
+  - [Hw information: `lshw`](#hw-information-lshw)
+  - [Change root password: `passwd`](#change-root-password-passwd)
+
+## Keymaps and kbd layout: `localectl`
 
 ### Virtual console keymaps
 
@@ -36,7 +45,7 @@ Then, you can change it using:
 localectl set-locales <locale>
 ```
 
-## `timedatectl`
+## Clock and timezone: `timedatectl`
 
 It prompts detailed informations about the current system clock:
 
@@ -44,7 +53,9 @@ It prompts detailed informations about the current system clock:
 timedatectl
 ```
 
-## `setfont`
+You can also use this as a simple cli utility to setup the system clock and timezone.
+
+## Console font: `setfont`
 
 You can change the console font using:
 
@@ -64,7 +75,7 @@ To set the default font use:
 setfont
 ```
 
-## `lshw`
+## Hw information: `lshw`
 
 ```shell
 lshw
@@ -75,3 +86,13 @@ lshw
 #### Options <!-- omit from toc -->
 
 `-class <class>`: filter the list and display only `<class>` devices.
+
+## Change root password: `passwd`
+
+You can set or change the root user password:
+
+```shell
+passwd
+```
+
+Then, follow prompted instructions.
