@@ -1,19 +1,21 @@
 # Some basic system utilities
 
 - [Some basic system utilities](#some-basic-system-utilities)
-  - [Keymaps and kbd layout: `localectl`](#keymaps-and-kbd-layout-localectl)
-    - [Virtual console keymaps](#virtual-console-keymaps)
+  - [Keymaps and kbd layout: `localectl` and `loadkeys`](#keymaps-and-kbd-layout-localectl-and-loadkeys)
+    - [Console keymaps](#console-keymaps)
     - [Keyboard layout](#keyboard-layout)
   - [Clock and timezone: `timedatectl`](#clock-and-timezone-timedatectl)
   - [Console font: `setfont`](#console-font-setfont)
   - [Hw information: `lshw`](#hw-information-lshw)
   - [Change root password: `passwd`](#change-root-password-passwd)
 
-## Keymaps and kbd layout: `localectl`
+## Keymaps and kbd layout: `localectl` and `loadkeys`
 
-### Virtual console keymaps
+Useful utilities to change keymaps and keyboard layout.
 
-You can get available virtual console keymaps running:
+### Console keymaps
+
+You can get available console keymaps running:
 
 ```shell
 localectl list-keymaps
@@ -81,11 +83,15 @@ setfont
 lshw
 ```
 
-"List hardware" by default lists all the hardware devices connected to the system.
+"List hardware" by default lists all the hardware devices connected to the system. It is useful if combined with some of its options.
+\
+For instance:
 
-#### Options <!-- omit from toc -->
+```shell
+lshw -class <class>
+```
 
-`-class <class>`: filter the list and display only `<class>` devices.
+Filters the list and display only `<class>` devices.
 
 ## Change root password: `passwd`
 
