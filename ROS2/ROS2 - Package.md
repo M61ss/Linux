@@ -12,7 +12,7 @@
     - [`colcon_cd`](#colcon_cd)
     - [colcon tab completion](#colcon-tab-completion)
   - [Create a new package (C++)](#create-a-new-package-c)
-    - [Directory tree (C++)](#directory-tree-c)
+    - [Directory tree](#directory-tree)
     - [CMake](#cmake)
     - [`package.xml`](#packagexml)
     - [Build a package](#build-a-package)
@@ -126,7 +126,7 @@ The colcon command supports command completion for bash and bash-like shells. Th
 ros2 pkg create --build-type ament_cmake --license Apache-2.0 <package_name>
 ```
 
-### Directory tree (C++)
+### Directory tree
 
 A ROS2 package has a structure like this:
 
