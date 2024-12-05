@@ -20,21 +20,45 @@ Every file in this folder should be named like this: `package_name_config.yaml`.
 >
 > Beware to place any definition in source files. All of them should be placed in headers.
 
-## Build
+The initial project tree should look like this:
+
+```txt
+root-folder
+├── pkg1
+|   ├── CMakeLists.txt
+│   ├── package.xml
+│   ├── include
+│   └── src
+│       └── main.cpp
+├── pkg2
+|   └── ...
+├── config
+└── launch
+```
+
+## CMake
 
 Basically, `CMake` it is a `make` wrapper. It automatically creates `Makefile` following `CMakeLists.txt` instructions.
+
+## `package.xml`
+
+It is important to focus on `<depend>` tags. They contain requirements to build the package.
+
+## Build
 
 1. Before to build, add necessary dependencies use `rosdep` (details [here](./../ROS2%20-%20Code.md#external-dependencies-rosdep)).
 2. Then, build using `colcon` (details [here](./../ROS2%20-%20Code.md#build-with-colcon)).
 
 > [!IMPORTANT] source
 >
-> Remember to source the setup file of your installation folder ([overlay](./../ROS2%20-%20Code.md#source-underlay-and-overlay))
+> Remember to source the setup file of your installation folder ([overlay](./../ROS2%20-%20Code.md#source-underlay-and-overlay)).
 
-## ROS2
+## ROS1 vs ROS2
 
-In ROS2, a differenza di quanto succedeva in ROS1, non c'è un broker che raccolga tutti i valori pubblicati dai publisher e che li consegni ai vari subscriber.
+### Broker
 
-## `package.xml`
+It is important to underline a big difference between ROS1 and ROS2.
 
-Build tool depend: vengono definiti i requisiti per far buildare quel nodo (dipendenze). Questo è l'unico parametro di reale interesse di questo file.
+Both ROS1 and ROS2 have publishers and subscribers. ROS1 has a third entity, which is broker. It works as mediator between publishers and subscribers. 
+
+The broker collect data published and deliver them to subscribers. It was easy to synchronize subscribers thanks to it. Anyway, in ROS2 it no longer exists because broker is unefficient. There are other primitives which provides equivalent synchronization features, saving performance.
