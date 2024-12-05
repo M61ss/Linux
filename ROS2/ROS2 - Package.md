@@ -1,23 +1,20 @@
-# ROS2 - Package and builing <!-- omit from toc -->
+# ROS2 - Package <!-- omit from toc -->
 
-- [Package](#package)
-  - [Build tools](#build-tools)
-    - [Install `colcon`](#install-colcon)
-    - [External dependencies: `rosdep`](#external-dependencies-rosdep)
-    - [Setup workspace](#setup-workspace)
-    - [Build with `colcon`](#build-with-colcon)
-    - [Source underlay and overlay](#source-underlay-and-overlay)
-    - [Test](#test)
-    - [Create a package based on template](#create-a-package-based-on-template)
-    - [`colcon_cd`](#colcon_cd)
-    - [colcon tab completion](#colcon-tab-completion)
-  - [Create a new package (C++)](#create-a-new-package-c)
-    - [Directory tree](#directory-tree)
-    - [CMake](#cmake)
-    - [`package.xml`](#packagexml)
-    - [Build a package](#build-a-package)
-
-# Package
+- [Build tools](#build-tools)
+  - [Install `colcon`](#install-colcon)
+  - [External dependencies: `rosdep`](#external-dependencies-rosdep)
+  - [Setup workspace](#setup-workspace)
+  - [Build with `colcon`](#build-with-colcon)
+  - [Source underlay and overlay](#source-underlay-and-overlay)
+  - [Test](#test)
+  - [Create a package based on template](#create-a-package-based-on-template)
+  - [`colcon_cd`](#colcon_cd)
+  - [colcon tab completion](#colcon-tab-completion)
+- [Create a new package (C++)](#create-a-new-package-c)
+  - [Directory tree](#directory-tree)
+  - [CMake](#cmake)
+  - [`package.xml`](#packagexml)
+  - [Build a package](#build-a-package)
 
 ## Build tools
 
