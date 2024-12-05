@@ -1,6 +1,6 @@
-# ROS2 - Coding modules <!-- omit from toc -->
+# ROS2 - Package and builing <!-- omit from toc -->
 
-- [Build](#build)
+- [Build tools](#build-tools)
   - [Install `colcon`](#install-colcon)
   - [External dependencies: `rosdep`](#external-dependencies-rosdep)
   - [Setup workspace](#setup-workspace)
@@ -11,10 +11,13 @@
   - [`colcon_cd`](#colcon_cd)
   - [colcon tab completion](#colcon-tab-completion)
 - [Package](#package)
-  - [Content](#content)
   - [Create a new package](#create-a-new-package)
+  - [Directory tree](#directory-tree)
+  - [CMake](#cmake)
+  - [`package.xml`](#packagexml)
+  - [Build a package](#build-a-package)
 
-## Build
+## Build tools
 
 ### Install `colcon`
 
@@ -117,25 +120,6 @@ The colcon command supports command completion for bash and bash-like shells. Th
 
 ## Package
 
-### Content
-
-The minimum content of a ROS package is:
-
-- **CMake**:
-  
-  - `CMakeLists.txt` file that describes how to build the code within the package.
-  - `include/<package_name>` directory containing the public headers for the package.
-  - `package.xml`: file containing meta information about the package.
-  - `src`: directory containing the source code for the package.
-
-- **Python**:
-  
-  - `package.xml`: file containing meta information about the package.
-  - `resource/<package_name>`: marker file for the package.
-  - `setup.cfg`: is required when a package has executables, so ros2 run can find them.
-  - `setup.py`: containing instructions for how to install the package.
-  - `<package_name>`: a directory with the same name as your package, used by ROS 2 tools to find your package, contains `__init__.py`.
-
 ### Create a new package
 
 - **CMake**:
@@ -149,3 +133,58 @@ The minimum content of a ROS package is:
   ```shell
   ros2 pkg create --build-type ament_python --license Apache-2.0 <package_name>
   ```
+
+### Directory tree
+
+A ROS2 package has a structure like this:
+
+- `/include`: it contains all headers.
+- `/src`: it contains all source code.
+
+Then, in the folder outside the package, which likely contains many packages, in addiction to packages, should exists two other folders:
+
+- `/config`: it contains a `.yaml` file for every package. These files contain those parameters which do not change at runtime, called "static parameters". 
+\
+Every file in this folder should be named like this: `package_name_config.yaml`. Config files are useful to avoid to recompile all package code in case you only want to change static parameters (very common situation).
+- `/launch`: it contains a `.py` file for every package. These scripts are necessary to be able to use the ROS2 utility `launch` and to load config files.
+
+> [!IMPORTANT] main
+>
+> in every ROS2 package the main function should be placed in a short separeted file: `/src/main.cpp`.
+
+> [!WARNING] Headers
+>
+> Beware to place any definition in source files. All of them should be placed in headers.
+
+The initial project tree should look like this:
+
+```txt
+root-folder
+├── pkg1
+|   ├── CMakeLists.txt
+│   ├── package.xml
+│   ├── include
+│   └── src
+│       └── main.cpp
+├── pkg2
+|   └── ...
+├── config
+└── launch
+```
+
+### CMake
+
+Basically, `CMake` it is a `make` wrapper. It automatically creates `Makefile` following `CMakeLists.txt` instructions.
+
+### `package.xml`
+
+It is important to focus on `<depend>` tags. They contain requirements to build the package.
+
+### Build a package
+
+1. Before to build, add necessary dependencies use `rosdep` (details [here](./ROS2%20-%20Code.md#external-dependencies-rosdep)).
+2. Then, build using `colcon` (details [here](./ROS2%20-%20Code.md#build-with-colcon)).
+
+> [!IMPORTANT] source
+>
+> Remember to source the setup file of your installation folder ([overlay](./ROS2%20-%20Code.md#source-underlay-and-overlay)).
