@@ -12,7 +12,7 @@
   - [colcon tab completion](#colcon-tab-completion)
 - [Package](#package)
   - [Create a new package](#create-a-new-package)
-  - [Directory tree](#directory-tree)
+  - [Directory tree (C++)](#directory-tree-c)
   - [CMake](#cmake)
   - [`package.xml`](#packagexml)
   - [Build a package](#build-a-package)
@@ -122,7 +122,7 @@ The colcon command supports command completion for bash and bash-like shells. Th
 
 ### Create a new package
 
-- **CMake**:
+- **C++** (CMake):
   
   ```shell
   ros2 pkg create --build-type ament_cmake --license Apache-2.0 <package_name>
@@ -134,11 +134,11 @@ The colcon command supports command completion for bash and bash-like shells. Th
   ros2 pkg create --build-type ament_python --license Apache-2.0 <package_name>
   ```
 
-### Directory tree
+### Directory tree (C++)
 
 A ROS2 package has a structure like this:
 
-- `/include`: it contains all headers.
+- `/include`: it contains headers. Headers created from scratch for the package are placed in `/include/<package_name>`. 
 - `/src`: it contains all source code.
 
 Then, in the folder outside the package, which likely contains many packages, in addiction to packages, should exists two other folders:
