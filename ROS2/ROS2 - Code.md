@@ -4,6 +4,7 @@
   - [Install `colcon`](#install-colcon)
   - [External dependencies: `rosdep`](#external-dependencies-rosdep)
   - [Setup workspace](#setup-workspace)
+  - [Build with `colcon`](#build-with-colcon)
   - [Source underlay and overlay](#source-underlay-and-overlay)
   - [Test](#test)
   - [Create a package based on template](#create-a-package-based-on-template)
@@ -48,6 +49,8 @@ Create the `src` folder, which will contain the source code:
 ```shell
 mkdir src
 ```
+
+### Build with `colcon`
 
 When you are ready, in the root of the workspace, run:
 
