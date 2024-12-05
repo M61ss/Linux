@@ -8,14 +8,14 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
    config = os.path.join(
-      get_package_share_directory('sum_launch'),
+      get_package_share_directory('adder-correct_launch'),
       'config',
-      'sum_config.yaml'
+      'adder-correct_config.yaml'
       )
 
    return LaunchDescription([
       Node(
-         package='sum',
+         package='adder-correct',
          executable='sum_node',
          namespace='sum_node',
          name='node',
