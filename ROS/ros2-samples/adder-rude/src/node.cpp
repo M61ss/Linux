@@ -13,7 +13,7 @@ using std::placeholders::_1;
 class Calculator : public rclcpp::Node
 {
 public:
-  Calculator() : Node("calculator"), qos_(10)
+  Calculator() : Node("adder_node"), qos_(10)
   {
     qos_.reliable();
     this->subscriber1_ = this->create_subscription<std_msgs::msg::Float32>("addendo1", qos_, std::bind(&Calculator::addendo1_callback, this, _1));

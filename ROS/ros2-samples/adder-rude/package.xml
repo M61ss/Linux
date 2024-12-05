@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>cpp_pubsub</name>
+  <name>adder-rude</name>
   <version>0.0.0</version>
-  <description>Example package - 2 publisher and 1 subscriber</description>
+  <description>Example package - 1 publisher and 2 subscriber</description>
   <maintainer email="mattia.mas2003@gmail.com">mattia</maintainer>
   <license>Apache-2.0</license>
 
