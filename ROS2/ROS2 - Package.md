@@ -1,21 +1,23 @@
 # ROS2 - Package and builing <!-- omit from toc -->
 
-- [Build tools](#build-tools)
-  - [Install `colcon`](#install-colcon)
-  - [External dependencies: `rosdep`](#external-dependencies-rosdep)
-  - [Setup workspace](#setup-workspace)
-  - [Build with `colcon`](#build-with-colcon)
-  - [Source underlay and overlay](#source-underlay-and-overlay)
-  - [Test](#test)
-  - [Create a package based on template](#create-a-package-based-on-template)
-  - [`colcon_cd`](#colcon_cd)
-  - [colcon tab completion](#colcon-tab-completion)
 - [Package](#package)
-  - [Create a new package](#create-a-new-package)
-  - [Directory tree (C++)](#directory-tree-c)
-  - [CMake](#cmake)
-  - [`package.xml`](#packagexml)
-  - [Build a package](#build-a-package)
+  - [Build tools](#build-tools)
+    - [Install `colcon`](#install-colcon)
+    - [External dependencies: `rosdep`](#external-dependencies-rosdep)
+    - [Setup workspace](#setup-workspace)
+    - [Build with `colcon`](#build-with-colcon)
+    - [Source underlay and overlay](#source-underlay-and-overlay)
+    - [Test](#test)
+    - [Create a package based on template](#create-a-package-based-on-template)
+    - [`colcon_cd`](#colcon_cd)
+    - [colcon tab completion](#colcon-tab-completion)
+  - [Create a new package (C++)](#create-a-new-package-c)
+    - [Directory tree (C++)](#directory-tree-c)
+    - [CMake](#cmake)
+    - [`package.xml`](#packagexml)
+    - [Build a package](#build-a-package)
+
+# Package
 
 ## Build tools
 
@@ -118,21 +120,11 @@ See the [documentation](https://colcon.readthedocs.io/en/released/user/installat
 
 The colcon command supports command completion for bash and bash-like shells. The `colcon-argcomplete` package must be installed and [some setup](https://colcon.readthedocs.io/en/released/user/installation.html#enable-completion) may be required to make it work.
 
-## Package
+## Create a new package (C++)
 
-### Create a new package
-
-- **C++** (CMake):
-  
-  ```shell
-  ros2 pkg create --build-type ament_cmake --license Apache-2.0 <package_name>
-  ```
-
-- **Python**:
-  
-  ```shell
-  ros2 pkg create --build-type ament_python --license Apache-2.0 <package_name>
-  ```
+```shell
+ros2 pkg create --build-type ament_cmake --license Apache-2.0 <package_name>
+```
 
 ### Directory tree (C++)
 
