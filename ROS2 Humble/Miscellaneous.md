@@ -17,3 +17,5 @@ The broker collect data published and deliver them to subscribers. It was easy t
 A nice example of syncronization between two subscriber in ROS2 is available [here](./packages-examples/adder-correct/src/sum.cpp).
 
 ## Testing
+
+Some information about testing [here](https://docs.ros.org/en/humble/Tutorials/Intermediate/Testing/Testing-Main.html).

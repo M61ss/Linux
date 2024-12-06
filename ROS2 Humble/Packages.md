@@ -1,4 +1,4 @@
-# ROS2 - Package <!-- omit from toc -->
+# ROS2 Humble - Package <!-- omit from toc -->
 
 - [Build tools](#build-tools)
   - [Install `colcon`](#install-colcon)
