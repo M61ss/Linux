@@ -22,3 +22,15 @@ void Sum::syncCallback(const float32_t& add1, const float32_t& add2)
 
     this->m_pubSum->publish(msg);
 }
+
+void Sum::load_params() {
+    this->declare_parameter<std::string>("addendo1_topic", "/a1");
+    this->declare_parameter<std::string>("addendo2_topic", "/a2");
+    this->declare_parameter<std::string>("sum_topic", "/s");
+
+    this->m_sTA1 = this->get_parameter("addendo1_topic").as_string();
+    this->m_sTA2 = this->get_parameter("addendo2_topic").as_string();
+    this->m_sSum = this->get_parameter("sum_topic").as_string();
+
+    RCLCPP_INFO(this->get_logger(), "[TOPICS] Addendo1: %s | Addendo2: %s | Somma: %s", this->m_sTA1.c_str(), this->m_sTA2.c_str(), this->m_sSum.c_str());
+}

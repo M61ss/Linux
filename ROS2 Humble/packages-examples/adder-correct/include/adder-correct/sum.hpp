@@ -15,8 +15,8 @@ class Sum : public rclcpp::Node {
 
     private:
 
-        std::string m_sTA1 = "/addendo1", m_sTA2 = "/addendo2";
-        std::string m_sSum = "/somma";
+        std::string m_sTA1, m_sTA2;
+        std::string m_sSum;
 
         // Subscriber
         message_filters::Subscriber<std_msgs::msg::Float32> m_subA1;
@@ -27,6 +27,9 @@ class Sum : public rclcpp::Node {
 
         // Publisher
         rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr m_pubSum;
+
+        // Load parameters
+        void load_params();
 
     public:
 
