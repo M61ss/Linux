@@ -1,6 +1,6 @@
 # ROS2 Humble - CLI reference <!-- omit from toc -->
 
-- [Documentation](#documentation)
+  - [Documentation](#documentation)
   - [Source setup files](#source-setup-files)
   - [Listing running components: `list`](#listing-running-components-list)
   - [Fetching informations: `info`](#fetching-informations-info)
