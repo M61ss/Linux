@@ -62,3 +62,19 @@ sudo systemctl start battery-charge-threshold.service
 ```
 
 Alternatively, add those lines to `.bashrc` of your home directory.
+
+## Working check
+
+To check if the service works, plug your laptop to AC, wait many seconds and run:
+
+```bash
+cat /sys/class/power_supply/BATTERY_NAME/status
+```
+
+Replace `BATTERY_NAME` with the name of your battery. 
+\
+If the battery has already reached the charge threshold, the command should produce the following output:
+
+```text
+Not Charging
+```
