@@ -17,8 +17,7 @@ def generate_launch_description():
       Node(
          package='adder-correct',
          executable='sum_node',
-         namespace='sum_node',
-         name='node',
+         name='sum_node',
          parameters=[config]
       )
    ])

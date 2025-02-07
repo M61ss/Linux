@@ -1,0 +1,5 @@
+/sum_node:
+  ros__parameters:
+    addendo1_topic: "/addendo1"
+    addendo2_topic: "/addendo2"
+    sum_topic: "/somma"
