@@ -169,7 +169,7 @@ To record the data published to one or more topics create a dedicated folder to 
 ros2 bag record -o <destination_file> <topic1_name> <topic2_name> <topicN_name>
 ```
 
-Where `-o` specifies the name of `<destination_file>` 
+Where `-o` specifies the name of `<destination_file>`.
 
 You can see details about your recording by running:
 
