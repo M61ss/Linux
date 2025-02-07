@@ -207,7 +207,7 @@ ros2 service find <type_name>
 
 ### Knowing structure of input: `interface show`
 
-If we want to know what is the expected input structure:
+If we want to know what is the input expected structure:
 
 ```shell
 ros2 interface show <service_type>
