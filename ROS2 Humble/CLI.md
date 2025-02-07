@@ -52,7 +52,7 @@ ros2 action list
 
 #### Options <!-- omit from toc -->
 
-- `-t` (NOT for node): will return the same list, this time with the corresponding type appended in brackets.
+- `-t` (NOT for node): will return not only the list, but also with the corresponding type appended in brackets.
 
 ## Fetching informations: `info`
 
