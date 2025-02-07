@@ -101,7 +101,7 @@ It keeps running showing data published on that topic as soon as data are entere
 
 ### Knowing structure of input: `interface show`
 
-If we want to learn what structure of data the message (input) expects and some other details:
+If we want to know what structure of data the message (input) expects and some other details:
 
 ```shell
 ros2 interface show <msg_type>
