@@ -1,33 +1,33 @@
 # ROS2 Humble - CLI reference <!-- omit from toc -->
 
-  - [Documentation](#documentation)
-  - [Source setup files](#source-setup-files)
-  - [Listing running components: `list`](#listing-running-components-list)
-  - [Fetching informations: `info`](#fetching-informations-info)
-  - [Node](#node)
-    - [Run node: `run`](#run-node-run)
-    - [Run multiple nodes: `launch`](#run-multiple-nodes-launch)
-  - [Topic](#topic)
-    - [See data published on a topic: `topic echo`](#see-data-published-on-a-topic-topic-echo)
-    - [Knowing structure of input: `interface show`](#knowing-structure-of-input-interface-show)
-    - [Publish data on a topic from command line: `topic pub`](#publish-data-on-a-topic-from-command-line-topic-pub)
-    - [Publication rate: `topic hz`](#publication-rate-topic-hz)
-    - [Bandwith used by a topic: `topic bw`](#bandwith-used-by-a-topic-topic-bw)
-    - [Find a topic of a given: `topic find`](#find-a-topic-of-a-given-topic-find)
-    - [Record data published on a topic: `bag`](#record-data-published-on-a-topic-bag)
-  - [Service](#service)
-    - [Service type: `service type`](#service-type-service-type)
-    - [Find a service of a given type: `service find`](#find-a-service-of-a-given-type-service-find)
-    - [Knowing structure of input: `interface show`](#knowing-structure-of-input-interface-show-1)
-    - [Call a service: `service call`](#call-a-service-service-call)
-  - [Parameter](#parameter)
-    - [Type and value of a parameter: `param get`](#type-and-value-of-a-parameter-param-get)
-    - [Change the value of a parameter: `param set`](#change-the-value-of-a-parameter-param-set)
-    - [View node's parameters: `param dump`](#view-nodes-parameters-param-dump)
-    - [Load parameters from a file: `param load`](#load-parameters-from-a-file-param-load)
-  - [Action](#action)
-    - [Knowing structure of input: `interface show`](#knowing-structure-of-input-interface-show-2)
-    - [Send action goal: `action send_goal`](#send-action-goal-action-send_goal)
+- [Documentation](#documentation)
+- [Source setup files](#source-setup-files)
+- [Listing running components: `list`](#listing-running-components-list)
+- [Fetching informations: `info`](#fetching-informations-info)
+- [Node](#node)
+  - [Run node: `run`](#run-node-run)
+  - [Run multiple nodes: `launch`](#run-multiple-nodes-launch)
+- [Topic](#topic)
+  - [See data published on a topic: `topic echo`](#see-data-published-on-a-topic-topic-echo)
+  - [Knowing structure of input: `interface show`](#knowing-structure-of-input-interface-show)
+  - [Publish data on a topic from command line: `topic pub`](#publish-data-on-a-topic-from-command-line-topic-pub)
+  - [Publication rate: `topic hz`](#publication-rate-topic-hz)
+  - [Bandwith used by a topic: `topic bw`](#bandwith-used-by-a-topic-topic-bw)
+  - [Find a topic of a given: `topic find`](#find-a-topic-of-a-given-topic-find)
+  - [Record data published on a topic: `bag`](#record-data-published-on-a-topic-bag)
+- [Service](#service)
+  - [Service type: `service type`](#service-type-service-type)
+  - [Find a service of a given type: `service find`](#find-a-service-of-a-given-type-service-find)
+  - [Knowing structure of input: `interface show`](#knowing-structure-of-input-interface-show-1)
+  - [Call a service: `service call`](#call-a-service-service-call)
+- [Parameter](#parameter)
+  - [Type and value of a parameter: `param get`](#type-and-value-of-a-parameter-param-get)
+  - [Change the value of a parameter: `param set`](#change-the-value-of-a-parameter-param-set)
+  - [View node's parameters: `param dump`](#view-nodes-parameters-param-dump)
+  - [Load parameters from a file: `param load`](#load-parameters-from-a-file-param-load)
+- [Action](#action)
+  - [Knowing structure of input: `interface show`](#knowing-structure-of-input-interface-show-2)
+  - [Send action goal: `action send_goal`](#send-action-goal-action-send_goal)
 
 ## Documentation
 
@@ -78,7 +78,7 @@ ros2 run <package_name> <node_name>
 #### Options <!-- omit from toc -->
 
 - `--ros-args --params-file <file_name>`: start the node using [parameters from the specified file](#load-parameters-from-a-file).
-- `--ros-args --remap __node:=<new_node_name>`: it runs the node with a different name
+- `--ros-args --remap __node:=<new_node_name>`: it runs the node with a different name.
 - `--ros-args --log-level <LEVEL>`: sets the default [logger level](rqt.md#logger-levels).
 
 ### Run multiple nodes: `launch`
