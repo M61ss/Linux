@@ -155,7 +155,7 @@ It returns the bandwidth utilization and number of messages being published to t
 
 ### Find a topic of a given: `topic find`
 
-To list a list of available topics of a given type use:
+To list available topics of a given type use:
 
 ```shell
 ros2 topic find <topic_type>
