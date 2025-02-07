@@ -111,7 +111,7 @@ ros2 interface show <msg_type>
 
 ### Publish data on a topic from command line: `topic pub`
 
-There is the possibility to publish data on a topic directly from the command line:
+There is the possibility to publish data on a topic from the command line:
 
 ```shell
 ros2 topic pub <topic_name> <msg_type> "<args>"
