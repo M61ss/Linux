@@ -267,7 +267,7 @@ ros2 param load <node_name> <parameter_file>
 
 ### Knowing structure of input: `interface show`
 
-If we want to learn what is the expected input structure:
+If we want to know what is the expected input structure:
 
 ```shell
 ros2 interface show <action_type>
