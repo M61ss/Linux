@@ -52,16 +52,9 @@ sudo systemctl enable battery-charge-threshold.service
 sudo systemctl start battery-charge-threshold.service
 ```
 
-## Service activation
-
-On every startup of your device you need to run:
-
-```bash
-sudo systemctl enable battery-charge-threshold.service
-sudo systemctl start battery-charge-threshold.service
-```
-
-Alternatively, add those lines to `.bashrc` of your home directory.
+> [!WARNING]
+>
+> The service will run on every system startup.
 
 ## Working check
 
