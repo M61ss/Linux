@@ -4,6 +4,8 @@
 
 Keep the [official documentation](https://www.gnu.org/software/grub/manual/grub/grub.html) as reference to edit GRUB's configuration files.
 
+As general rule, to edit the appearance of GRUB, you should edit `/etc/default/grub` file.
+
 ### Reload GRUB
 
 After editing whatever GRUB configuration file, then you have to reload GRUB:
