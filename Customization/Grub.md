@@ -19,7 +19,7 @@ After editing whatever GRUB configuration file, then you have to reload GRUB:
 - **Fedora**:
   
   ```shell
-  grub2-mkconfig -o /boot/grub2/grub.cfg
+  sudo grub2-mkconfig -o /boot/grub2/grub.cfg
   ```
 
 ## Grub customizer
