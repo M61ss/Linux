@@ -10,7 +10,7 @@ As general rule, to edit the appearance of GRUB, you should edit `/etc/default/g
 
 After editing whatever GRUB configuration file, then you have to reload GRUB:
 
-- **Ubuntu**:
+- **Ubuntu** & **Arch**:
   
   ```shell
   sudo update-grub
