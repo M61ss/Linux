@@ -1,4 +1,54 @@
-# Power saving
+# Power consumption analyzers
+
+## powerstat
+
+### Installation
+
+```shell
+sudo apt install powerstat
+```
+
+### Usage
+
+If you need to quickly check system power consumption, you can simply run:
+
+```shell
+powerstat 60
+```
+
+For other usage, refer to its documentation.
+
+# Power managers
+
+## tlp (recommended)
+
+> [!IMPORTANT]
+> 
+> This tutorial is for Ubuntu.
+
+### Installation
+
+```shell
+sudo apt install tlp tlp-rdw
+```
+
+### Activation
+
+You need to mask and stop the default power manager:
+
+```shell
+sudo systemctl mask power-profiles-daemon.service
+sudo systemctl stop power-profiles-daemon.service
+```
+
+Then, you can activate tlp:
+
+```shell
+sudo systemctl enable tlp
+sudo systemctl start tlp
+```
+
+Reboot the computer and all should work well.
 
 ## tuneD
 
