@@ -5,6 +5,8 @@
 Keep the [official documentation](https://www.gnu.org/software/grub/manual/grub/grub.html) as reference to edit GRUB's configuration files.
 
 As general rule, to edit basic function of GRUB, you should edit `/etc/default/grub` file. Anyway, you could need to check or fix information in `/boot/grub/grub.cfg` or `/etc/grub.d` for advanced GRUB customizations.
+\
+Themes are stored in `/boot/grub/themes`. Every theme should be contained into a folder which should contain a file named `theme.txt`.
 
 ### Reload GRUB
 
