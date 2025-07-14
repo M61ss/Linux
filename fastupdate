@@ -39,3 +39,5 @@ while :
 # 	done
 # 
 # 	echo "PATH=$PATH:$(pwd)/fastupdate" >> $HOME/.bashrc
+# 	echo "export PATH"
+# 	source $HOME/.bashrc
