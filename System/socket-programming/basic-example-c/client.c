@@ -65,5 +65,7 @@ int main(int argc, char *argv[]) {
     error("ERROR reading from socket");
   printf("%s\n", buffer);
 
+  close(sockfd);
+
   return 0;
 }

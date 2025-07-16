@@ -12,54 +12,48 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-	"Server": {
-		"prefix": "server",
-		"body": [
-			"#!/usr/bin/env python3",
-			"import socket",
-			"import sys",
-			"",
-			"if len(sys.argv) != 2:",
-			"    print(\"Usage: python server.py <port>\")",
-			"    sys.exit(1)",
-			"",
-			"HOST = '127.0.0.1'",
-			"PORT = int(sys.argv[1])",
-			"",
-			"with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:",
-			"    s.bind((HOST, PORT))",
-			"    s.listen()",
-			"    print(f'Server in ascolto su {HOST}:{PORT}')",
-			"    conn, addr = s.accept()",
-			"    with conn:",
-			"        print('Connessione da', addr)",
-			"        data = conn.recv(1024)",
-			"        if not data:",
-			"            print('Nessun dato ricevuto')",
-			"        else:",
-			"            print('Ricevuto:', data.decode())",
-			"            conn.sendall(b'Hello from server')"
-		]
-	},
-	"Client": {
+	"Simple TCP Client in Python": {
 		"prefix": "client",
 		"body": [
 			"#!/usr/bin/env python3",
 			"import socket",
 			"import sys",
 			"",
-			"if len(sys.argv) != 3:",
-			"    print(\"Usage: python client.py <host> <port>\")",
-			"    sys.exit(1)",
-			"",
 			"HOST = sys.argv[1]",
 			"PORT = int(sys.argv[2])",
 			"",
 			"with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:",
 			"    s.connect((HOST, PORT))",
-			"    s.sendall(b'Hello from client')",
+			"    msg = input('Please enter the message: ')",
+			"    s.sendall(msg.encode('utf-8'))",
 			"    data = s.recv(1024)",
-			"    print('Ricevuto dal server:', data.decode())"
-		]
+			"    s.close()",
+			"",
+			"print('Received: %s' % data.decode('utf-8'))"
+		],
+		"description": "Basic TCP client in Python using sockets"
+	},
+	"Simple TCP Server in Python": {
+		"prefix": "server",
+		"body": [
+			"#!/usr/bin/env python3",
+			"import socket",
+			"import sys",
+			"import time",
+			"",
+			"HOST = '127.0.0.1'  # Standard loopback interface address (localhost)",
+			"PORT = int(sys.argv[1])  # Port to listen on",
+			"",
+			"with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:",
+			"    s.bind((HOST, PORT))",
+			"    s.listen()",
+			"    conn, addr = s.accept()",
+			"    # print('Connected by', addr)",
+			"    data = conn.recv(1024)",
+			"    print('Here is the message: %s' % data.decode('utf-8'))",
+			"    conn.sendall('I got your message'.encode('utf-8'))",
+			"    time.sleep(1)  # socket must be closed by client; wait to avoid TIME_WAIT"
+		],
+		"description": "Basic TCP server in Python using sockets"
 	}
 }
