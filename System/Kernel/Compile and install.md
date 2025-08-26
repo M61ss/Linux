@@ -11,18 +11,19 @@ Install whatever source code you want.
 ## Dependencies
 
 ```shell
-sudo apt-get install git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison
+sudo apt install git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison pkg-config libdw-dev
 ```
 
 ## Configuration
 
 Move to the root directory of the source code kernel folder.
 
-Then, there are 2 options:
+Then, there are 3 options:
 
 1. Copy `.config` file of your kernel:
    ```shell
    cp -v /boot/config-$(uname -r) .config
+   make olddefconfig
    ```
 
 2. Create a new `.config` file:
@@ -39,20 +40,18 @@ Then, there are 2 options:
 ## Compile
 
 ```shell
-make -jn
+make -j$(nproc)
 ```
-
-Where `n` is the number of core of parallellization dedicated to compile.
 
 ## Clean
 
-Remove compile output (also `.config` file):
+Remove compile output:
 
 ```shell
 make clean
 ```
 
-For a depth clean:
+For a depth clean (it removes also `.config` file):
 
 ```shell
 make mrproper
