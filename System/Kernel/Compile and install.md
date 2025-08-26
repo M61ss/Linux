@@ -11,7 +11,7 @@ Install whatever source code you want.
 ## Dependencies
 
 ```shell
-sudo apt install git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison pkg-config libdw-dev
+sudo apt install git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison pkg-config libdw-dev gawk
 ```
 
 ## Configuration
@@ -63,6 +63,14 @@ Then, in .config add:
 
 ```shell
 CONFIG_SYSTEM_TRUSTED_KEYS="certs/signing_key.pem"
+```
+
+### Avoid conflicts
+
+To avoid conflicts with kernels already installed on the machine, change local version in .config:
+
+```shell
+scripts/config --set-str CONFIG_LOCALVERSION <arbitrary-name>
 ```
 
 ## Compile
