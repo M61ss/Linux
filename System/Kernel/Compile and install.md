@@ -45,16 +45,7 @@ On many distros it is possible to recieve an error like this:
 make[3]: *** No rule to make target 'debian/canonical-certs.pem', needed by 'certs/x509_certificate_list'.  Stop.
 ```
 
-When developing, the simpler solution is to disable module signature verification using menuconfig:
-
-```shell
-General setup  --->
-   [ ] Module signature verification
-```
-
-Then, disable `CONFIG_MODULE_SIG`, `CONFIG_SYSTEM_TRUSTED_KEYS` and `CONFIG_SYSTEM_REVOCATION_KEYS`.
-
-It is also possible to edit the .config file using the dedicated script:
+When developing, the simpler solution is to disable module signature verification using menuconfig. Edit the .config file using the dedicated script:
 
 ```shell
 scripts/config --disable SYSTEM_TRUSTED_KEYS
