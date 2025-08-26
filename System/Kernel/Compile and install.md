@@ -37,6 +37,43 @@ Then, there are 3 options:
    make defconfig
    ```
 
+### Certification issues
+
+On many distros it is possible to recieve an error like this:
+
+```shell
+make[3]: *** No rule to make target 'debian/canonical-certs.pem', needed by 'certs/x509_certificate_list'.  Stop.
+```
+
+When developing, the simpler solution is to disable module signature verification using menuconfig:
+
+```shell
+General setup  --->
+   [ ] Module signature verification
+```
+
+Then, disable `CONFIG_MODULE_SIG`, `CONFIG_SYSTEM_TRUSTED_KEYS` and `CONFIG_SYSTEM_REVOCATION_KEYS`.
+
+It is also possible to edit the .config file using the dedicated script:
+
+```shell
+scripts/config --disable SYSTEM_TRUSTED_KEYS
+scripts/config --disable SYSTEM_REVOCATION_KEYS
+scripts/config --disable MODULE_SIG
+```
+
+Anyway, it is also possible to provide a fake certificate, maybe to test correct working of system, generating a PEM cert:
+
+```shell
+openssl req -new -nodes -utf8 -sha256 -days 36500 -batch -x509 -out certs/signing_key.pem -keyout certs/signing_key.pem
+```
+
+Then, in .config add:
+
+```shell
+CONFIG_SYSTEM_TRUSTED_KEYS="certs/signing_key.pem"
+```
+
 ## Compile
 
 ```shell
