@@ -104,3 +104,20 @@ Remeber to update grub (or whatever bootloader you use) in order to see the new 
 ```shell
 sudo update-grub2
 ```
+
+# Uninstall compiled kernel
+
+Remove files located in that directories:
+
+```shell
+sudo rm -rf /boot/vmlinuz-<KERNEL-VERSION>
+sudo rm -rf /boot/System-map-<KERNEL-VERSION>
+sudo rm -rf /boot/config-<KERNEL-VERSION>
+sudo rm -rf /lib/modules/<KERNEL-VERSION>/
+```
+
+Then, update grub to detect changes:
+
+```shell
+sudo update-grub2
+```
