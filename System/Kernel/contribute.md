@@ -16,22 +16,58 @@ Edit `~/.gitconfig` adding these lines:
     smtpuser = <your_email>@gmail.com
 ```
 
-## git format-patch
+## Create the patch
 
 To create a .patch file run:
 
 ```shell
 git add <...>
-git commit <...>
-git format-patch --to=<sender_email>@gmail.com HEAD~..HEAD
+git commit <...> --signoff
+git format-patch -M HEAD~n
 ```
 
 > [!NOTE]
 >
-> The `HEAD~` option tells git to create the patch of the latest commit only. if you want to create a patch of your last two or more commits then simply change `HEAD~` to `HEAD~2` or `HEAD~n` where n is the number of commits you want to include.
+> In `HEAD~n` n is the number of commits you want to include.
+
+## Check the patch
+
+You should always check the correctness of your patch:
+
+```shell
+./scripts/checkpatch.pl --strict /path/to/your/patch.patch
+```
+
+### Common issue: signature
+
+If you forgot to sign your commit, you can simply do that:
+
+```shell
+# In case of single commit
+git commit --amend --signoff
+# In case of multiple commits
+git rebase --signoff HEAD~N
+```
 
 ## Send the patch
 
+In order to know to who send your email, run:
+
 ```shell
-git send-email *.patch --to=<reciever_email>@gmail.com --cc=<carbon_copy>@gmail.com
+./scripts/get_maintainer.pl --separator=, --no-rolestats path/to/patch/dir/*.patch
 ```
+
+Then, you can send the email using git:
+
+> [!DANGER]
+>
+> It is very important to be careful before send the patch, so remove from the following command `--dry-run` flag only when you are sure that all is correct.
+
+```shell
+git send-email --dry-run /path/to/patch/dir --to=<reciever1_email>@gmail.com,<reciever2_email>@gmail.com --cc="<carbon1_copy>@gmail.com,<carbon2_copy>@gmail.com"
+```
+
+> [!WARNING]
+>
+> Starting from 2022 Google disabled support for potentially dangerous app (for example old apps, like git send-email), so you need to open your account google, type in "search" label "password" and open "App password". Here, add a name for the app which require a password (for example, in this case "git-send-email" could be a good name). Then, copy the password that google prompts. Use that password to access from git send-email. Remember that this password is composed by 16 chars, so whitespaces have not to be included inserting password.
+
